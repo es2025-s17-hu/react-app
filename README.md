@@ -1,4 +1,4 @@
-# React + Vite
+# React + Vite (es2025-s17-hu)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
