@@ -4,6 +4,8 @@ on: [push]
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    container:
+      image: aschmelyun/cleaver:latest
     steps:
       - run: docker login gitea.dineease.com -u ${{secrets.REGISTRY_USER}} -p ${{secrets.REGISTRY_PASSWORD}}
       - name: Check out repository code
