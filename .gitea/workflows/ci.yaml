@@ -1,13 +1,15 @@
+
 name: Build and push docker image
 on: [push]
+
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    container:
-      image: catthehacker/ubuntu:act-latest
     steps:
-      - run: docker login gitea.dineease.com -u ${{secrets.REGISTRY_USER}} -p ${{secrets.REGISTRY_PASSWORD}}
+      - name: Install Docker
+        run: curl -fsSL https://get.docker.com | sh
+      - run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login gitea.dineease.com -u ${{secrets.REGISTRY_USER}} --password-stdin
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: docker build . -t gitea.dineease.com/${{gitea.actor}}/module-a:latest
