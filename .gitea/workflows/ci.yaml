@@ -6,9 +6,9 @@ on: [push]
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    container:
+      image: jani888/gitea-runner:latest
     steps:
-      - name: Install Docker
-        run: curl -fsSL https://get.docker.com | sh
       - run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login gitea.dineease.com -u ${{secrets.REGISTRY_USER}} --password-stdin
       - name: Check out repository code
         uses: actions/checkout@v3
